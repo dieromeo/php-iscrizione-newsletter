@@ -1,23 +1,22 @@
 <?php
 
-$email = $_GET["email"];
-echo "Indirizzo email ricevuto: " . $email . "<br>";
+// echo "Indirizzo email ricevuto: " . $email . "<br>";
 
-// function verifyEmail($get_value, $char1, $char2)
-// {
-//     $first_check = in_array($char1, $get_value);
-//     if ($first_check) {
-//         echo 'ok';
-//     }
-// };
+function verifyEmail($get_value, $char1, $char2)
+{
+    $first_check = str_contains($get_value, $char1);
+    $second_check = str_contains($get_value, $char2);
+    if ($first_check && $second_check) {
+        return true;
+    }
+};
 
-// echo verifyEmail($_GET, '@', '.');
+$check_email = (count($_GET) != 0);
 
-if (str_contains('@', $email) === true) {
-    echo "ok";
-} else {
-    echo "no";
+if ($check_email) {
+    $email = $_GET["email"];
 }
+
 
 ?>
 
@@ -42,8 +41,23 @@ if (str_contains('@', $email) === true) {
                 <label for="email"></label>
                 <input type="text" name="email" id="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
             </div>
-            <button class="btn btn-primary">Subscribe</button>
+            <button class="btn btn-primary mb-3">Subscribe</button>
         </form>
+        <div class="banners">
+            <?php
+            if ($check_email) : ?>
+                <?php if (verifyEmail($email, '@', '.')) : ?>
+                    <div class="alert alert-success" role="alert">
+                        Subscribe Succesfully!!
+                    </div>
+                <?php
+                else : ?>
+                    <div class="alert alert-danger" role="alert">
+                        Please insert a valid email!
+                    </div>
+                <?php endif ?>
+            <?php endif ?>
+        </div>
     </div>
 </body>
 
