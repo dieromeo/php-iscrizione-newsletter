@@ -1,23 +1,5 @@
 <?php
-
-// echo "Indirizzo email ricevuto: " . $email . "<br>";
-
-function verifyEmail($get_value, $char1, $char2)
-{
-    $first_check = str_contains($get_value, $char1);
-    $second_check = str_contains($get_value, $char2);
-    if ($first_check && $second_check) {
-        return true;
-    }
-};
-
-$check_email = (count($_GET) != 0);
-
-if ($check_email) {
-    $email = $_GET["email"];
-}
-
-
+include 'functions.php';
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +17,7 @@ if ($check_email) {
     <h1 class="text-center py-5">Iscrizione alla newsletter</h1>
     <div class="container">
         <h4>Please insert an email with '.' and '@' .</h4>
+        <!-- form  -->
         <form action="index.php" method="GET">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">@</span>
@@ -43,15 +26,18 @@ if ($check_email) {
             </div>
             <button class="btn btn-primary mb-3">Subscribe</button>
         </form>
+        <!-- /form  -->
         <div class="banners">
             <?php
             if ($check_email) : ?>
+                <!-- alert di successo  -->
                 <?php if (verifyEmail($email, '@', '.')) : ?>
                     <div class="alert alert-success" role="alert">
                         Subscribe Succesfully!!
                     </div>
                 <?php
                 else : ?>
+                    <!-- alert di errore  -->
                     <div class="alert alert-danger" role="alert">
                         Please insert a valid email!
                     </div>
