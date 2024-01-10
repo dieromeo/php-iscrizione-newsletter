@@ -29,19 +29,12 @@ include 'functions.php';
         <!-- /form  -->
         <div class="banners">
             <?php
+            // eseguito solo se eè stat inserita una mail 
             if ($check_email) : ?>
-                <!-- alert di successo  -->
-                <?php if (verifyEmail($email, '@', '.')) : ?>
-                    <div class="alert alert-success" role="alert">
-                        Subscribe Succesfully!!
-                    </div>
-                <?php
-                else : ?>
-                    <!-- alert di errore  -->
-                    <div class="alert alert-danger" role="alert">
-                        Please insert a valid email!
-                    </div>
-                <?php endif ?>
+                <!-- alert -->
+                <div class="alert <?php echo verifyEmail($email, '@', '.') ? "alert-success" : "alert-danger" ?>" role="alert">
+                    <?php echo verifyEmail($email, '@', '.') ? "Subscribe Succesfully" : "Please insert a valid email" ?>
+                </div>
             <?php endif ?>
         </div>
     </div>
