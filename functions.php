@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 function verifyEmail($get_value, $char1, $char2)
 {
@@ -13,4 +14,8 @@ $check_email = (count($_GET) != 0);
 
 if ($check_email) {
     $email = $_GET["email"];
+    $_SESSION['email'] = $email;
+    if (verifyEmail($email, '@', '.')) {
+        header('Location: welcome-page.php');
+    }
 }
