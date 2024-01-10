@@ -1,3 +1,26 @@
+<?php
+
+$email = $_GET["email"];
+echo "Indirizzo email ricevuto: " . $email . "<br>";
+
+// function verifyEmail($get_value, $char1, $char2)
+// {
+//     $first_check = in_array($char1, $get_value);
+//     if ($first_check) {
+//         echo 'ok';
+//     }
+// };
+
+// echo verifyEmail($_GET, '@', '.');
+
+if (str_contains('@', $email) === true) {
+    echo "ok";
+} else {
+    echo "no";
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +33,18 @@
 </head>
 
 <body>
-    <h1>Iscrizione alla newsletter</h1>
+    <h1 class="text-center py-5">Iscrizione alla newsletter</h1>
+    <div class="container">
+        <h4>Please insert an email with '.' and '@' .</h4>
+        <form action="index.php" method="GET">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <label for="email"></label>
+                <input type="text" name="email" id="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <button class="btn btn-primary">Subscribe</button>
+        </form>
+    </div>
 </body>
 
 </html>
